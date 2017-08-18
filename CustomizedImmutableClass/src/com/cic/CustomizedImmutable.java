@@ -27,6 +27,7 @@ final class CustomImmutable
 		System.out.println(ci==ci1);//false
 		System.out.println(ci==ci2);//true
 		System.out.println("This is our Immutable class");
+		System.out.println("Using final class");
 		
 	}
 	
