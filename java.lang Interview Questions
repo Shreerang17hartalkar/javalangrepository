@@ -1,0 +1,56 @@
+ Interview Questions and answers on java.lang package
+======================================================
+1) Why is String immutable in Java?
+=>The string is Immutable in Java because String objects are cached in String pool. Since cached String literals 
+are shared between multiple clients there is always a risk, where one client's action would affect all another client.
+ For example, if one client changes the value of String "Test" to "TEST", all other clients will also see that value.
+ Since caching of String objects was important from performance reason this risk was
+ avoided by making String class Immutable. At the same time, String was made final so that no one can compromise
+ invariant of String class e.g. Immutability, Caching, hashcode calculation etc by extending and overriding behaviors.
+
+
+2)What is the difference between String and StringBuffer?
+=>Once we create a String object we can't perform any changes in that object.If we are trying to perform any changes 
+  then with those changes a new String object will be created.
+  String s = new String("Nagpur");
+  s.concat("orangecity");
+  Here new object will be created "Nagpurorangecity",Thus String is Immutable in Java.
+      Whereas in case of StringBuffer is mutable.If we try to perform any type changes it they will be reflected on 
+  the same Object.
+  StringBuffer sb = new StringBuffer("Nagpur");
+   sb.append("metroProject").
+        
+
+3)What is the Difference between StringBuffer and StringBuilder?
+=>All methods present in StringBuffer class are synchronized,hence at a time only thread is allowed to operate on 
+  StringBuffer object hence it is thread safe.As it is thread safe its perfoemance is relatively low.
+             Whereas no method in StringBuilder is synchronized.At a time multiple threads are allowed to operate on
+  StringBuilder,its performance is relatively good.
+
+
+4)What is String Constant pool?
+=>It is a special place where the collection of references to string objects are placed.We know that string literals 
+ cannot be modified and multiple reference variable can refer to the same string literal.Let us understand this through 
+ following snippet.
+ public class StringConstantPool
+ {
+   public static void main(String args[])
+   {
+     String s = "Nagpur";
+     String s1= "Nagpur";
+      System.out.println(s.euals(s1));
+      System.out.printl(s==s1);
+   }
+  } 
+   Here s and s1 refrences will be poiting to the same Object as their content is same. i.e; Object creation in SCP is
+  optional.First JVM will check is any object already created with the required content or not,iff an abject is already
+  created it will be reused instead of creating a new one,hence multiple refrences can point to the smae object in SCP.
+  Thus there is no chance of existing two objects with the smae content in SCP. 
+                 The "Garbage Collector" is not allowed to access the SCP area,hence even though the object does not have
+  any references still the object is not eligible for Garbage Collection.All SCP objects will be destroyed automatically
+  at the time of JVM shutdown.
+
+
+ 
+
+
